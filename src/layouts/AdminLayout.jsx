@@ -1,0 +1,100 @@
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+    LayoutDashboard, Users, Package, CreditCard, BarChart3,
+    UserCog, LogOut, Hospital
+} from 'lucide-react';
+import { logout } from '../slices/authSlice';
+import NotificationBell from '../components/NotificationBell';
+
+const navItems = [
+    {
+        label: 'Overview', items: [
+            { to: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+        ]
+    },
+    {
+        label: 'Management', items: [
+            { to: '/admin/patients', label: 'Patients', icon: Users },
+            { to: '/admin/staff', label: 'Staff', icon: UserCog },
+            { to: '/admin/inventory', label: 'Inventory', icon: Package },
+        ]
+    },
+    {
+        label: 'Finance', items: [
+            { to: '/admin/billing', label: 'Billing', icon: CreditCard },
+            { to: '/admin/reports', label: 'Reports', icon: BarChart3 },
+        ]
+    },
+];
+
+function getInitials(name) { return name?.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() || '??'; }
+
+export default function AdminLayout() {
+    const { currentUser } = useSelector(s => s.auth);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogout = () => { dispatch(logout()); navigate('/login'); };
+
+    return (
+        <div className="app-shell">
+            <aside className="sidebar">
+
+                <div className="sidebar-logo">
+                    <div className="sidebar-logo-icon"><Hospital size={22} color="#fff" /></div>
+                    <div className="sidebar-logo-text">
+                        <h2>MediCare HMS</h2>
+                        <span>Hospital Management</span>
+                    </div>
+                </div>
+
+                <nav className="sidebar-nav">
+                    {navItems.map(section => (
+                        <div key={section.label}>
+                            <div className="sidebar-section-label">{section.label}</div>
+                            {section.items.map(item => {
+                                const Icon = item.icon;
+                                return (
+                                    <NavLink key={item.to} to={item.to} className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
+                                        <Icon size={18} className="sidebar-item-icon" />
+                                        {item.label}
+                                    </NavLink>
+                                );
+                            })}
+                        </div>
+                    ))}
+                </nav>
+
+                <div className="sidebar-footer">
+                    <div className="sidebar-user">
+                        <div className="avatar avatar-blue">{getInitials(currentUser?.name)}</div>
+                        <div className="sidebar-user-info">
+                            <div className="sidebar-user-name">{currentUser?.name}</div>
+                            <div className="sidebar-user-role">Administrator</div>
+                        </div>
+                        <button onClick={handleLogout} style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer', padding: 4 }} title="Logout">
+                            <LogOut size={16} />
+                        </button>
+                    </div>
+                </div>
+            </aside>
+
+            <div className="main-content">
+                <header className="topbar">
+                    <div className="topbar-title">
+                        <h1>MediCare Hospital Management</h1>
+                        <p>Admin Portal · {new Date().toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    </div>
+                    <div className="topbar-actions">
+                        <NotificationBell />
+                        <div className="avatar avatar-blue" style={{ cursor: 'pointer' }}>{getInitials(currentUser?.name)}</div>
+                    </div>
+                </header>
+                <main className="page-content">
+                    <Outlet />
+                </main>
+            </div>
+        </div>
+    );
+}

@@ -1,0 +1,287 @@
+// ============================================================
+// MOCK DATA — Hospital Management System
+// ⚠️ FOR DEMONSTRATION PURPOSES ONLY — NOT FOR REAL CLINICAL USE
+// ============================================================
+
+export const DEPARTMENTS = [
+  'Cardiology', 'Neurology', 'Orthopedics', 'Pediatrics',
+  'Dermatology', 'Oncology', 'Gynecology', 'Emergency',
+  'Radiology', 'Psychiatry', 'General Medicine', 'ENT',
+  'Urology', 'Gastroenterology', 'Nephrology', 'Pulmonology'
+];
+
+export const BLOOD_GROUPS = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+
+// ─── USERS ───────────────────────────────────────────────────
+export const MOCK_USERS = [
+  { id: 'u1', email: 'admin@hospital.com', password: 'admin123', role: 'admin', name: 'Dr. Admin Kumar', avatar: null, department: 'Administration' },
+  { id: 'u2', email: 'doctor@hospital.com', password: 'doc123', role: 'doctor', name: 'Dr. Rajesh Sharma', avatar: null, department: 'Cardiology', doctorId: 'd1' },
+  { id: 'u3', email: 'doctor2@hospital.com', password: 'doc123', role: 'doctor', name: 'Dr. Priya Mehta', avatar: null, department: 'Neurology', doctorId: 'd2' },
+  { id: 'u4', email: 'nurse@hospital.com', password: 'nurse123', role: 'nurse', name: 'Nurse Sunita Rao', avatar: null, department: 'General Medicine' },
+  { id: 'u5', email: 'receptionist@hospital.com', password: 'rec123', role: 'receptionist', name: 'Anita Desai', avatar: null, department: 'Front Desk' },
+  { id: 'u6', email: 'patient@hospital.com', password: 'pat123', role: 'patient', name: 'Ravi Kumar', avatar: null, patientId: 'p1' },
+  { id: 'u7', email: 'patient2@hospital.com', password: 'pat123', role: 'patient', name: 'Meera Singh', avatar: null, patientId: 'p2' },
+  { id: 'u8', email: 'pharmacist@hospital.com', password: 'pharma123', role: 'pharmacist', name: 'Vikram Joshi', avatar: null, department: 'Pharmacy' },
+  { id: 'u9', email: 'nurse2@hospital.com', password: 'nurse123', role: 'nurse', name: 'Nurse Rahul Gupta', avatar: null, department: 'Cardiology' },
+  { id: 'u10', email: 'patient3@hospital.com', password: 'pat123', role: 'patient', name: 'Arjun Nair', avatar: null, patientId: 'p3' },
+];
+
+// ─── DOCTORS ─────────────────────────────────────────────────
+export const MOCK_DOCTORS = [
+  {
+    id: 'd1', userId: 'u2', name: 'Dr. Rajesh Sharma', specialization: 'Senior Cardiologist',
+    department: 'Cardiology', experience: 15, rating: 4.8, totalPatients: 1240,
+    qualifications: 'MBBS, MD (Cardiology), DM (Cardiology), FESC',
+    availableSlots: ['09:00', '10:00', '11:00', '14:00', '15:00'],
+    workingDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'], consultationFee: 800, avatar: null,
+    about: 'Expert in interventional cardiology and heart failure management with 15 years of experience. Performed over 3,000 angioplasties.',
+    languages: ['English', 'Hindi', 'Kannada'], awards: ['Best Cardiologist - 2022', 'Excellence in Patient Care - 2021']
+  },
+  {
+    id: 'd2', userId: 'u3', name: 'Dr. Priya Mehta', specialization: 'Consultant Neurologist',
+    department: 'Neurology', experience: 12, rating: 4.7, totalPatients: 980,
+    qualifications: 'MBBS, MD (Neurology), DM (Neurology)',
+    availableSlots: ['10:00', '11:00', '12:00', '15:00', '16:00'],
+    workingDays: ['Mon', 'Wed', 'Fri'], consultationFee: 1000, avatar: null,
+    about: 'Specialist in epilepsy, movement disorders, and stroke management. Published 18 research papers.',
+    languages: ['English', 'Hindi', 'Gujarati'], awards: ['Young Neurologist Award - 2020']
+  },
+  {
+    id: 'd3', userId: null, name: 'Dr. Amit Patel', specialization: 'Orthopedic Surgeon',
+    department: 'Orthopedics', experience: 18, rating: 4.9, totalPatients: 2100,
+    qualifications: 'MBBS, MS (Ortho), FRCS (Edinburgh)',
+    availableSlots: ['09:00', '11:00', '14:00', '16:00'],
+    workingDays: ['Tue', 'Thu', 'Sat'], consultationFee: 1200, avatar: null,
+    about: 'Expert in total knee and hip replacement, and sports injury rehabilitation. 5,000+ successful surgeries.',
+    languages: ['English', 'Hindi', 'Marathi'], awards: ['Best Orthopedic Surgeon - 2023']
+  },
+  {
+    id: 'd4', userId: null, name: 'Dr. Sunita Krishnan', specialization: 'Consultant Pediatrician',
+    department: 'Pediatrics', experience: 10, rating: 4.6, totalPatients: 1560,
+    qualifications: 'MBBS, MD (Pediatrics), Fellowship in Neonatology',
+    availableSlots: ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'],
+    workingDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], consultationFee: 600, avatar: null,
+    about: 'Dedicated to child healthcare including neonatal care, vaccinations, and growth disorders.',
+    languages: ['English', 'Tamil', 'Kannada'], awards: []
+  },
+  {
+    id: 'd5', userId: null, name: 'Dr. Mohan Rao', specialization: 'Dermatologist & Cosmetologist',
+    department: 'Dermatology', experience: 8, rating: 4.5, totalPatients: 780,
+    qualifications: 'MBBS, MD (Dermatology), DVD',
+    availableSlots: ['10:00', '11:00', '15:00', '16:00'],
+    workingDays: ['Mon', 'Wed', 'Fri'], consultationFee: 700, avatar: null,
+    about: 'Specialist in skin disorders, hair loss treatment, and cosmetic dermatology including laser therapy.',
+    languages: ['English', 'Telugu', 'Hindi'], awards: []
+  },
+  {
+    id: 'd6', userId: null, name: 'Dr. Kavitha Reddy', specialization: 'Senior Gynecologist & Obstetrician',
+    department: 'Gynecology', experience: 20, rating: 4.9, totalPatients: 3200,
+    qualifications: 'MBBS, MS (OBG), FICOG, FRCOG',
+    availableSlots: ['09:00', '10:00', '11:00', '14:00'],
+    workingDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'], consultationFee: 900, avatar: null,
+    about: 'Expert in high-risk pregnancy, laparoscopic gynecologic surgeries, and infertility treatment with 20+ years experience.',
+    languages: ['English', 'Telugu', 'Hindi', 'Kannada'], awards: ['Best OBG Specialist - 2022', 'Patient Choice Award - 2023']
+  },
+  {
+    id: 'd7', userId: null, name: 'Dr. Suresh Nambiar', specialization: 'Oncologist',
+    department: 'Oncology', experience: 22, rating: 4.8, totalPatients: 890,
+    qualifications: 'MBBS, MD (Medicine), DM (Medical Oncology)',
+    availableSlots: ['10:00', '11:00', '14:00', '15:00'],
+    workingDays: ['Mon', 'Tue', 'Thu', 'Fri'], consultationFee: 1500, avatar: null,
+    about: 'Specialist in solid tumors and hematological malignancies. Expert in chemotherapy and targeted therapy protocols.',
+    languages: ['English', 'Malayalam', 'Hindi'], awards: ['Excellence in Oncology - 2021']
+  },
+  {
+    id: 'd8', userId: null, name: 'Dr. Arun Singh', specialization: 'Emergency Medicine Specialist',
+    department: 'Emergency', experience: 9, rating: 4.7, totalPatients: 4100,
+    qualifications: 'MBBS, MD (Emergency Medicine), ATLS Certified',
+    availableSlots: ['08:00', '12:00', '16:00', '20:00'],
+    workingDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], consultationFee: 500, avatar: null,
+    about: 'Specialist in acute care medicine, trauma management, and critical care. 24/7 emergency availability.',
+    languages: ['English', 'Hindi', 'Punjabi'], awards: ['Emergency Excellence Award - 2022']
+  },
+  {
+    id: 'd9', userId: null, name: 'Dr. Nalini Iyer', specialization: 'Radiologist',
+    department: 'Radiology', experience: 14, rating: 4.6, totalPatients: 2800,
+    qualifications: 'MBBS, MD (Radiology), FRCR',
+    availableSlots: ['09:00', '10:00', '14:00', '15:00'],
+    workingDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'], consultationFee: 600, avatar: null,
+    about: 'Expert in CT, MRI, and ultrasound interpretation with special interest in musculoskeletal and abdominal radiology.',
+    languages: ['English', 'Tamil', 'Kannada'], awards: []
+  },
+  {
+    id: 'd10', userId: null, name: 'Dr. Farhan Qureshi', specialization: 'Psychiatrist',
+    department: 'Psychiatry', experience: 11, rating: 4.7, totalPatients: 620,
+    qualifications: 'MBBS, MD (Psychiatry), MRCPsych',
+    availableSlots: ['10:00', '11:00', '14:00', '16:00'],
+    workingDays: ['Mon', 'Wed', 'Thu', 'Fri'], consultationFee: 1200, avatar: null,
+    about: 'Specialist in mood disorders, anxiety, schizophrenia, and addiction psychiatry. Focus on evidence-based therapy.',
+    languages: ['English', 'Hindi', 'Urdu'], awards: ['Mental Health Champion - 2023']
+  },
+  {
+    id: 'd11', userId: null, name: 'Dr. Vandana Pillai', specialization: 'ENT Surgeon',
+    department: 'ENT', experience: 13, rating: 4.8, totalPatients: 1150,
+    qualifications: 'MBBS, MS (ENT), DORL',
+    availableSlots: ['09:00', '11:00', '14:00', '15:00'],
+    workingDays: ['Mon', 'Tue', 'Thu', 'Fri'], consultationFee: 750, avatar: null,
+    about: 'Expert in endoscopic sinus surgery, cochlear implants, and pediatric ENT disorders.',
+    languages: ['English', 'Malayalam', 'Tamil'], awards: []
+  },
+  {
+    id: 'd12', userId: null, name: 'Dr. Kiran Bhat', specialization: 'Urologist',
+    department: 'Urology', experience: 16, rating: 4.7, totalPatients: 1380,
+    qualifications: 'MBBS, MS (General Surgery), MCh (Urology)',
+    availableSlots: ['09:00', '10:00', '14:00', '16:00'],
+    workingDays: ['Tue', 'Wed', 'Thu', 'Sat'], consultationFee: 1000, avatar: null,
+    about: 'Expert in laparoscopic urological surgeries, kidney stone management, and robotic-assisted procedures.',
+    languages: ['English', 'Kannada', 'Hindi'], awards: ['Best Urologist Award - 2022']
+  },
+  {
+    id: 'd13', userId: null, name: 'Dr. Ramya Chandran', specialization: 'Gastroenterologist',
+    department: 'Gastroenterology', experience: 10, rating: 4.6, totalPatients: 870,
+    qualifications: 'MBBS, MD (Medicine), DM (Gastroenterology)',
+    availableSlots: ['10:00', '11:00', '15:00', '16:00'],
+    workingDays: ['Mon', 'Wed', 'Fri'], consultationFee: 900, avatar: null,
+    about: 'Specialist in endoscopy, inflammatory bowel disease, liver disorders, and therapeutic colonoscopy.',
+    languages: ['English', 'Tamil', 'Telugu'], awards: []
+  },
+  {
+    id: 'd14', userId: null, name: 'Dr. Pramod Kulkarni', specialization: 'Nephrologist',
+    department: 'Nephrology', experience: 17, rating: 4.8, totalPatients: 720,
+    qualifications: 'MBBS, MD (Medicine), DM (Nephrology)',
+    availableSlots: ['09:00', '11:00', '14:00', '15:00'],
+    workingDays: ['Mon', 'Tue', 'Thu', 'Fri'], consultationFee: 1100, avatar: null,
+    about: 'Expert in chronic kidney disease, dialysis management, renal transplantation follow-up, and glomerulonephritis.',
+    languages: ['English', 'Marathi', 'Hindi', 'Kannada'], awards: ['Kidney Care Excellence - 2021']
+  },
+  {
+    id: 'd15', userId: null, name: 'Dr. Leela Srinivasan', specialization: 'Pulmonologist',
+    department: 'Pulmonology', experience: 14, rating: 4.7, totalPatients: 960,
+    qualifications: 'MBBS, MD (Pulmonary Medicine), FCCP',
+    availableSlots: ['09:00', '10:00', '14:00', '16:00'],
+    workingDays: ['Mon', 'Tue', 'Wed', 'Fri'], consultationFee: 850, avatar: null,
+    about: 'Specialist in asthma, COPD, sleep disorders, lung cancer, and interventional bronchoscopy.',
+    languages: ['English', 'Tamil', 'Hindi'], awards: ['Best Pulmonologist - 2023']
+  },
+];
+
+// ─── PATIENTS ─────────────────────────────────────────────────
+export const MOCK_PATIENTS = [
+  { id: 'p1', userId: 'u6', patientId: 'PAT-2024-001', name: 'Ravi Kumar', age: 45, gender: 'Male', bloodGroup: 'O+', phone: '9876543210', email: 'patient@hospital.com', address: '123, MG Road, Bengaluru', emergencyContact: { name: 'Sita Kumar', relation: 'Wife', phone: '9876543211' }, medicalHistory: { allergies: ['Penicillin'], chronicConditions: ['Hypertension', 'Diabetes Type 2'], previousSurgeries: ['Appendectomy (2015)'], currentMedications: ['Metformin 500mg', 'Amlodipine 5mg'] }, insurance: { provider: 'Star Health', policyNumber: 'SH-2024-98765', validUntil: '2025-12-31' }, registeredOn: '2022-03-15', visits: 12 },
+  { id: 'p2', userId: 'u7', patientId: 'PAT-2024-002', name: 'Meera Singh', age: 32, gender: 'Female', bloodGroup: 'B+', phone: '9765432109', email: 'patient2@hospital.com', address: '456, Park Street, Mumbai', emergencyContact: { name: 'Raj Singh', relation: 'Husband', phone: '9765432108' }, medicalHistory: { allergies: [], chronicConditions: ['Migraine'], previousSurgeries: [], currentMedications: ['Sumatriptan 50mg'] }, insurance: { provider: 'HDFC Ergo', policyNumber: 'HE-2024-54321', validUntil: '2026-06-30' }, registeredOn: '2023-01-20', visits: 6 },
+  { id: 'p3', userId: null, patientId: 'PAT-2024-003', name: 'Arjun Nair', age: 58, gender: 'Male', bloodGroup: 'A+', phone: '9654321098', email: 'arjun.nair@email.com', address: '789, Anna Salai, Chennai', emergencyContact: { name: 'Kavitha Nair', relation: 'Wife', phone: '9654321097' }, medicalHistory: { allergies: ['Aspirin', 'Sulfa drugs'], chronicConditions: ['Coronary Artery Disease', 'Hypothyroidism'], previousSurgeries: ['CABG (2020)', 'Knee Replacement (2022)'], currentMedications: ['Atorvastatin 40mg', 'Levothyroxine 50mcg', 'Aspirin 75mg'] }, insurance: { provider: 'LIC Health', policyNumber: 'LIC-2024-11223', validUntil: '2025-03-15' }, registeredOn: '2021-08-10', visits: 34 },
+  { id: 'p4', userId: null, patientId: 'PAT-2024-004', name: 'Prachi Deshmukh', age: 28, gender: 'Female', bloodGroup: 'AB+', phone: '9543210987', email: 'prachi.d@email.com', address: '234, FC Road, Pune', emergencyContact: { name: 'Rohan Deshmukh', relation: 'Brother', phone: '9543210988' }, medicalHistory: { allergies: [], chronicConditions: [], previousSurgeries: [], currentMedications: [] }, insurance: null, registeredOn: '2024-01-05', visits: 2 },
+  { id: 'p5', userId: null, patientId: 'PAT-2024-005', name: 'Krishnamurthy V', age: 67, gender: 'Male', bloodGroup: 'O-', phone: '9432109876', email: 'krish.v@email.com', address: '567, Jubilee Hills, Hyderabad', emergencyContact: { name: 'Lakshmi K', relation: 'Daughter', phone: '9432109875' }, medicalHistory: { allergies: ['Ibuprofen'], chronicConditions: ['COPD', 'Hypertension', 'Type 2 Diabetes'], previousSurgeries: ['Cataract Surgery (2019)'], currentMedications: ['Metformin 1000mg', 'Salbutamol inhaler', 'Lisinopril 10mg'] }, insurance: { provider: 'New India', policyNumber: 'NI-2024-33456', validUntil: '2025-09-30' }, registeredOn: '2020-05-22', visits: 52 },
+  { id: 'p6', userId: null, patientId: 'PAT-2024-006', name: 'Ananya Bose', age: 12, gender: 'Female', bloodGroup: 'B-', phone: '9321098765', email: 'ananya.parent@email.com', address: '890, Park Circus, Kolkata', emergencyContact: { name: 'Debashis Bose', relation: 'Father', phone: '9321098764' }, medicalHistory: { allergies: ['Peanuts'], chronicConditions: ['Asthma'], previousSurgeries: [], currentMedications: ['Montelukast 5mg', 'Budesonide inhaler'] }, insurance: { provider: 'Bajaj Allianz', policyNumber: 'BA-2024-77890', validUntil: '2026-12-31' }, registeredOn: '2023-07-18', visits: 8 },
+];
+
+// ─── APPOINTMENTS ─────────────────────────────────────────────
+const today = new Date();
+const fmt = (d) => d.toISOString().split('T')[0];
+const addDays = (d, n) => { const nd = new Date(d); nd.setDate(nd.getDate() + n); return nd; };
+
+export const MOCK_APPOINTMENTS = [
+  { id: 'apt1', appointmentNumber: 'APT-2024-001001', patientId: 'p1', patientName: 'Ravi Kumar', doctorId: 'd1', doctorName: 'Dr. Rajesh Sharma', department: 'Cardiology', date: fmt(addDays(today, 1)), time: '10:00', visitType: 'Follow-up', urgency: 'Routine', reason: 'Routine cardiac checkup and blood pressure review. Feeling slightly breathless during morning walks.', symptoms: 'Mild breathlessness, occasional chest tightness', status: 'approved', notes: 'Bring all previous ECG reports', approvedAt: new Date().toISOString(), createdAt: addDays(today, -2).toISOString(), fee: 800 },
+  { id: 'apt2', appointmentNumber: 'APT-2024-001002', patientId: 'p2', patientName: 'Meera Singh', doctorId: 'd2', doctorName: 'Dr. Priya Mehta', department: 'Neurology', date: fmt(addDays(today, 0)), time: '11:00', visitType: 'First Visit', urgency: 'Urgent', reason: 'Severe migraine attacks occurring 3-4 times a week, not responding to current medication.', symptoms: 'Severe headache, photophobia, nausea, vomiting', status: 'pending', notes: '', approvedAt: null, createdAt: addDays(today, -1).toISOString(), fee: 1000 },
+  { id: 'apt3', appointmentNumber: 'APT-2024-001003', patientId: 'p3', patientName: 'Arjun Nair', doctorId: 'd1', doctorName: 'Dr. Rajesh Sharma', department: 'Cardiology', date: fmt(addDays(today, -3)), time: '09:00', visitType: 'Follow-up', urgency: 'Routine', reason: 'Post-operative follow up after CABG surgery. Monitoring cardiac function and medication review.', symptoms: 'Mild fatigue, occasional palpitations', status: 'completed', notes: 'Good recovery. Continue current medications.', approvedAt: addDays(today, -5).toISOString(), createdAt: addDays(today, -7).toISOString(), fee: 800, rating: 5, review: 'Excellent doctor. Very thorough and patient.' },
+  { id: 'apt4', appointmentNumber: 'APT-2024-001004', patientId: 'p4', patientName: 'Prachi Deshmukh', doctorId: 'd3', doctorName: 'Dr. Amit Patel', department: 'Orthopedics', date: fmt(addDays(today, 2)), time: '14:00', visitType: 'First Visit', urgency: 'Routine', reason: 'Knee pain while climbing stairs. Pain present for the last 3 months.', symptoms: 'Knee pain, swelling, difficulty walking', status: 'pending', notes: '', approvedAt: null, createdAt: new Date().toISOString(), fee: 1200 },
+  { id: 'apt5', appointmentNumber: 'APT-2024-001005', patientId: 'p5', patientName: 'Krishnamurthy V', doctorId: 'd2', doctorName: 'Dr. Priya Mehta', department: 'Neurology', date: fmt(addDays(today, -1)), time: '15:00', visitType: 'Follow-up', urgency: 'Routine', reason: 'Neurological follow-up for gait issues. Has been experiencing balance problems.', symptoms: 'Balance issues, occasional tremors', status: 'rejected', rejectionReason: 'Doctor on emergency leave. Please reschedule at the earliest.', notes: '', approvedAt: null, createdAt: addDays(today, -3).toISOString(), fee: 1000 },
+  { id: 'apt6', appointmentNumber: 'APT-2024-001006', patientId: 'p1', patientName: 'Ravi Kumar', doctorId: 'd1', doctorName: 'Dr. Rajesh Sharma', department: 'Cardiology', date: fmt(addDays(today, 5)), time: '10:00', visitType: 'Consultation', urgency: 'Urgent', reason: 'Increased blood pressure readings at home. Readings showing 160/100 consistently.', symptoms: 'Headache, high BP readings, mild dizziness', status: 'pending', notes: '', approvedAt: null, createdAt: new Date().toISOString(), fee: 800 },
+  { id: 'apt7', appointmentNumber: 'APT-2024-001007', patientId: 'p6', patientName: 'Ananya Bose', doctorId: 'd4', doctorName: 'Dr. Sunita Krishnan', department: 'Pediatrics', date: fmt(addDays(today, 0)), time: '09:00', visitType: 'Follow-up', urgency: 'Routine', reason: 'Asthma management review. Checking if inhaler technique is correct.', symptoms: 'Wheezing after exercise', status: 'approved', notes: 'Bring spacer device for technique assessment', approvedAt: addDays(today, -1).toISOString(), createdAt: addDays(today, -3).toISOString(), fee: 600 },
+];
+
+// ─── INVENTORY ────────────────────────────────────────────────
+export const MOCK_INVENTORY = [
+  { id: 'inv1', name: 'Paracetamol 500mg', category: 'Medicines', currentStock: 450, unit: 'Tablets', reorderLevel: 200, costPrice: 0.5, sellingPrice: 1.0, expiryDate: '2026-08-15', supplier: 'Sun Pharma', supplierContact: '9800001234', batchNumber: 'SP-2024-001', location: 'Pharmacy Shelf A1' },
+  { id: 'inv2', name: 'Amoxicillin 250mg', category: 'Medicines', currentStock: 85, unit: 'Capsules', reorderLevel: 100, costPrice: 3.0, sellingPrice: 6.0, expiryDate: '2025-03-20', supplier: 'Cipla Ltd', supplierContact: '9800002345', batchNumber: 'CL-2024-002', location: 'Pharmacy Shelf A2' },
+  { id: 'inv3', name: 'Metformin 500mg', category: 'Medicines', currentStock: 320, unit: 'Tablets', reorderLevel: 150, costPrice: 0.8, sellingPrice: 1.5, expiryDate: '2026-12-31', supplier: 'Micro Labs', supplierContact: '9800003456', batchNumber: 'ML-2024-003', location: 'Pharmacy Shelf A3' },
+  { id: 'inv4', name: 'Atorvastatin 40mg', category: 'Medicines', currentStock: 210, unit: 'Tablets', reorderLevel: 100, costPrice: 4.0, sellingPrice: 8.0, expiryDate: '2026-06-30', supplier: 'Pfizer India', supplierContact: '9800004567', batchNumber: 'PF-2024-004', location: 'Pharmacy Shelf B1' },
+  { id: 'inv5', name: 'Amlodipine 5mg', category: 'Medicines', currentStock: 42, unit: 'Tablets', reorderLevel: 100, costPrice: 1.2, sellingPrice: 2.5, expiryDate: '2025-02-28', supplier: 'Dr. Reddy\'s', supplierContact: '9800005678', batchNumber: 'DR-2024-005', location: 'Pharmacy Shelf B2' },
+  { id: 'inv6', name: 'Surgical Gloves (M)', category: 'Surgical Supplies', currentStock: 28, unit: 'Pairs', reorderLevel: 50, costPrice: 15.0, sellingPrice: 30.0, expiryDate: '2027-01-01', supplier: 'Ansell India', supplierContact: '9800006789', batchNumber: 'AN-2024-006', location: 'Store Room B' },
+  { id: 'inv7', name: 'Digital BP Monitor', category: 'Equipment', currentStock: 12, unit: 'Units', reorderLevel: 5, costPrice: 2500, sellingPrice: 4000, expiryDate: null, supplier: 'Omron Healthcare', supplierContact: '9800007890', batchNumber: 'OH-2024-007', location: 'Equipment Room' },
+  { id: 'inv8', name: 'Insulin Syringes 1ml', category: 'Surgical Supplies', currentStock: 180, unit: 'Units', reorderLevel: 100, costPrice: 2.0, sellingPrice: 4.0, expiryDate: '2026-05-15', supplier: 'BD India', supplierContact: '9800008901', batchNumber: 'BD-2024-008', location: 'Store Room A' },
+  { id: 'inv9', name: 'Antiseptic Solution 500ml', category: 'General Supplies', currentStock: 35, unit: 'Bottles', reorderLevel: 30, costPrice: 45, sellingPrice: 90, expiryDate: '2025-11-30', supplier: 'Reckitt India', supplierContact: '9800009012', batchNumber: 'RI-2024-009', location: 'Store Room A' },
+  { id: 'inv10', name: 'N95 Masks', category: 'General Supplies', currentStock: 15, unit: 'Units', reorderLevel: 50, costPrice: 25, sellingPrice: 50, expiryDate: '2026-12-31', supplier: '3M India', supplierContact: '9800010123', batchNumber: '3M-2024-010', location: 'Store Room C' },
+  { id: 'inv11', name: 'IV Cannula 22G', category: 'Surgical Supplies', currentStock: 95, unit: 'Units', reorderLevel: 80, costPrice: 12, sellingPrice: 25, expiryDate: '2027-03-31', supplier: 'BD India', supplierContact: '9800008901', batchNumber: 'BD-2024-011', location: 'Store Room B' },
+  { id: 'inv12', name: 'Omeprazole 20mg', category: 'Medicines', currentStock: 260, unit: 'Capsules', reorderLevel: 100, costPrice: 1.5, sellingPrice: 3.0, expiryDate: '2026-09-30', supplier: 'Sun Pharma', supplierContact: '9800001234', batchNumber: 'SP-2024-012', location: 'Pharmacy Shelf C1' },
+];
+
+// ─── BILLING ─────────────────────────────────────────────────
+export const MOCK_BILLS = [
+  { id: 'bill1', invoiceNumber: 'INV-2024-001001', patientId: 'p3', patientName: 'Arjun Nair', appointmentId: 'apt3', date: fmt(addDays(today, -3)), items: [{ description: 'Consultation Fee - Cardiology', quantity: 1, unitPrice: 800, total: 800 }, { description: 'ECG Test', quantity: 1, unitPrice: 350, total: 350 }, { description: 'Echocardiogram', quantity: 1, unitPrice: 2500, total: 2500 }], subtotal: 3650, tax: 182.5, discount: 0, total: 3832.5, paymentMethod: 'Insurance', status: 'paid', paidAt: fmt(addDays(today, -3)) },
+  { id: 'bill2', invoiceNumber: 'INV-2024-001002', patientId: 'p1', patientName: 'Ravi Kumar', appointmentId: 'apt1', date: fmt(addDays(today, 1)), items: [{ description: 'Consultation Fee - Cardiology', quantity: 1, unitPrice: 800, total: 800 }, { description: 'Blood Pressure Monitoring', quantity: 1, unitPrice: 150, total: 150 }], subtotal: 950, tax: 47.5, discount: 50, total: 947.5, paymentMethod: null, status: 'pending', paidAt: null },
+  { id: 'bill3', invoiceNumber: 'INV-2024-001003', patientId: 'p6', patientName: 'Ananya Bose', appointmentId: 'apt7', date: fmt(today), items: [{ description: 'Consultation Fee - Pediatrics', quantity: 1, unitPrice: 600, total: 600 }, { description: 'Spirometry Test', quantity: 1, unitPrice: 800, total: 800 }, { description: 'Budesonide Inhaler', quantity: 1, unitPrice: 450, total: 450 }], subtotal: 1850, tax: 92.5, discount: 100, total: 1842.5, paymentMethod: 'Card', status: 'paid', paidAt: fmt(today) },
+  { id: 'bill4', invoiceNumber: 'INV-2024-001004', patientId: 'p5', patientName: 'Krishnamurthy V', appointmentId: null, date: fmt(addDays(today, -10)), items: [{ description: 'Consultation Fee - Neurology', quantity: 1, unitPrice: 1000, total: 1000 }, { description: 'MRI Brain', quantity: 1, unitPrice: 8500, total: 8500 }, { description: 'Medicines', quantity: 1, unitPrice: 1200, total: 1200 }], subtotal: 10700, tax: 535, discount: 500, total: 10735, paymentMethod: 'Cash', status: 'overdue', paidAt: null },
+];
+
+// ─── STAFF ────────────────────────────────────────────────────
+export const MOCK_STAFF = [
+  { id: 's1',  employeeId: 'EMP-2024-001', name: 'Dr. Rajesh Sharma',    role: 'doctor',       department: 'Cardiology',        phone: '9811112222', email: 'doctor@hospital.com',        joinDate: '2009-06-01', shift: 'Morning', salary: 150000, status: 'active' },
+  { id: 's2',  employeeId: 'EMP-2024-002', name: 'Dr. Priya Mehta',      role: 'doctor',       department: 'Neurology',         phone: '9822223333', email: 'doctor2@hospital.com',       joinDate: '2012-03-15', shift: 'Morning', salary: 140000, status: 'active' },
+  { id: 's3',  employeeId: 'EMP-2024-003', name: 'Dr. Amit Patel',       role: 'doctor',       department: 'Orthopedics',       phone: '9866667777', email: 'amit.patel@hospital.com',    joinDate: '2006-11-01', shift: 'Morning', salary: 180000, status: 'active' },
+  { id: 's4',  employeeId: 'EMP-2024-004', name: 'Dr. Sunita Krishnan',  role: 'doctor',       department: 'Pediatrics',        phone: '9888889999', email: 'sunita.k@hospital.com',      joinDate: '2014-08-15', shift: 'Morning', salary: 130000, status: 'active' },
+  { id: 's5',  employeeId: 'EMP-2024-005', name: 'Dr. Mohan Rao',        role: 'doctor',       department: 'Dermatology',       phone: '9899990000', email: 'mohan.rao@hospital.com',     joinDate: '2016-05-01', shift: 'Morning', salary: 120000, status: 'active' },
+  { id: 's6',  employeeId: 'EMP-2024-006', name: 'Dr. Kavitha Reddy',    role: 'doctor',       department: 'Gynecology',        phone: '9700001111', email: 'kavitha.r@hospital.com',     joinDate: '2004-03-15', shift: 'Morning', salary: 190000, status: 'active' },
+  { id: 's7',  employeeId: 'EMP-2024-007', name: 'Dr. Suresh Nambiar',   role: 'doctor',       department: 'Oncology',          phone: '9711112222', email: 'suresh.n@hospital.com',      joinDate: '2002-07-01', shift: 'Morning', salary: 220000, status: 'active' },
+  { id: 's8',  employeeId: 'EMP-2024-008', name: 'Dr. Arun Singh',       role: 'doctor',       department: 'Emergency',         phone: '9722223333', email: 'arun.singh@hospital.com',    joinDate: '2015-01-10', shift: 'Rotating', salary: 145000, status: 'active' },
+  { id: 's9',  employeeId: 'EMP-2024-009', name: 'Dr. Nalini Iyer',      role: 'doctor',       department: 'Radiology',         phone: '9733334444', email: 'nalini.iyer@hospital.com',   joinDate: '2010-09-01', shift: 'Morning', salary: 135000, status: 'active' },
+  { id: 's10', employeeId: 'EMP-2024-010', name: 'Dr. Farhan Qureshi',   role: 'doctor',       department: 'Psychiatry',        phone: '9744445555', email: 'farhan.q@hospital.com',      joinDate: '2013-06-15', shift: 'Morning', salary: 155000, status: 'active' },
+  { id: 's11', employeeId: 'EMP-2024-011', name: 'Dr. Vandana Pillai',   role: 'doctor',       department: 'ENT',               phone: '9755556666', email: 'vandana.p@hospital.com',     joinDate: '2011-08-01', shift: 'Morning', salary: 128000, status: 'active' },
+  { id: 's12', employeeId: 'EMP-2024-012', name: 'Dr. Kiran Bhat',       role: 'doctor',       department: 'Urology',           phone: '9766667777', email: 'kiran.bhat@hospital.com',    joinDate: '2008-03-01', shift: 'Morning', salary: 160000, status: 'active' },
+  { id: 's13', employeeId: 'EMP-2024-013', name: 'Dr. Ramya Chandran',   role: 'doctor',       department: 'Gastroenterology',  phone: '9777778888', email: 'ramya.c@hospital.com',       joinDate: '2014-11-01', shift: 'Morning', salary: 142000, status: 'active' },
+  { id: 's14', employeeId: 'EMP-2024-014', name: 'Dr. Pramod Kulkarni',  role: 'doctor',       department: 'Nephrology',        phone: '9788889999', email: 'pramod.k@hospital.com',      joinDate: '2007-04-20', shift: 'Morning', salary: 168000, status: 'active' },
+  { id: 's15', employeeId: 'EMP-2024-015', name: 'Dr. Leela Srinivasan', role: 'doctor',       department: 'Pulmonology',       phone: '9799990000', email: 'leela.s@hospital.com',       joinDate: '2010-07-01', shift: 'Morning', salary: 148000, status: 'active' },
+  { id: 's16', employeeId: 'EMP-2024-016', name: 'Nurse Sunita Rao',     role: 'nurse',        department: 'General Medicine',  phone: '9833334444', email: 'nurse@hospital.com',         joinDate: '2018-09-01', shift: 'Morning', salary: 45000,  status: 'active' },
+  { id: 's17', employeeId: 'EMP-2024-017', name: 'Nurse Rahul Gupta',    role: 'nurse',        department: 'Cardiology',        phone: '9877778888', email: 'nurse2@hospital.com',        joinDate: '2021-04-01', shift: 'Evening', salary: 42000,  status: 'active' },
+  { id: 's18', employeeId: 'EMP-2024-018', name: 'Nurse Deepa Nair',     role: 'nurse',        department: 'Neurology',         phone: '9844440001', email: 'deepa.n@hospital.com',       joinDate: '2019-02-15', shift: 'Morning', salary: 44000,  status: 'active' },
+  { id: 's19', employeeId: 'EMP-2024-019', name: 'Nurse Kavya Sharma',   role: 'nurse',        department: 'Pediatrics',        phone: '9855550002', email: 'kavya.s@hospital.com',       joinDate: '2020-06-01', shift: 'Evening', salary: 40000,  status: 'active' },
+  { id: 's20', employeeId: 'EMP-2024-020', name: 'Nurse Ranjit Singh',   role: 'nurse',        department: 'Emergency',         phone: '9866660003', email: 'ranjit.s@hospital.com',      joinDate: '2017-11-20', shift: 'Night',   salary: 48000,  status: 'active' },
+  { id: 's21', employeeId: 'EMP-2024-021', name: 'Anita Desai',          role: 'receptionist', department: 'Front Desk',        phone: '9844445555', email: 'receptionist@hospital.com',  joinDate: '2020-01-10', shift: 'Morning', salary: 30000,  status: 'active' },
+  { id: 's22', employeeId: 'EMP-2024-022', name: 'Sunil Kapoor',         role: 'receptionist', department: 'Front Desk',        phone: '9833330021', email: 'sunil.k@hospital.com',       joinDate: '2022-03-01', shift: 'Evening', salary: 28000,  status: 'active' },
+  { id: 's23', employeeId: 'EMP-2024-023', name: 'Vikram Joshi',         role: 'pharmacist',   department: 'Pharmacy',          phone: '9855556666', email: 'pharmacist@hospital.com',    joinDate: '2016-07-20', shift: 'Morning', salary: 55000,  status: 'active' },
+  { id: 's24', employeeId: 'EMP-2024-024', name: 'Preethi Nair',         role: 'pharmacist',   department: 'Pharmacy',          phone: '9866660024', email: 'preethi.n@hospital.com',     joinDate: '2019-08-15', shift: 'Evening', salary: 50000,  status: 'active' },
+  { id: 's25', employeeId: 'EMP-2024-025', name: 'Manoj Tiwari',         role: 'admin',        department: 'Administration',    phone: '9800000025', email: 'admin@hospital.com',         joinDate: '2005-01-01', shift: 'Morning', salary: 80000,  status: 'active' },
+];
+
+// ─── NOTIFICATIONS ────────────────────────────────────────────
+export const MOCK_NOTIFICATIONS = [
+  { id: 'n1', userId: 'u2', type: 'appointment_request', title: 'New Appointment Request', message: 'Meera Singh has requested an appointment for Neurology on tomorrow at 11:00 AM', appointmentId: 'apt2', read: false, createdAt: addDays(today, -1).toISOString() },
+  { id: 'n2', userId: 'u6', type: 'appointment_approved', title: 'Appointment Confirmed!', message: 'Your appointment with Dr. Rajesh Sharma on tomorrow at 10:00 AM has been approved. Appointment #APT-2024-001001', appointmentId: 'apt1', read: false, createdAt: addDays(today, -1).toISOString() },
+  { id: 'n3', userId: 'u7', type: 'appointment_rejected', title: 'Appointment Not Approved', message: 'Your appointment request was not approved. Reason: Doctor on emergency leave. Please reschedule.', appointmentId: 'apt5', read: true, createdAt: addDays(today, -1).toISOString() },
+  { id: 'n4', userId: 'u1', type: 'low_stock', title: 'Low Stock Alert', message: 'Amlodipine 5mg is below reorder level. Current stock: 42 units (Reorder level: 100)', read: false, createdAt: new Date().toISOString() },
+  { id: 'n5', userId: 'u8', type: 'expiry_alert', title: 'Medicine Expiring Soon', message: 'Amlodipine 5mg (Batch: DR-2024-005) expires on 2025-02-28. Please review stock.', read: false, createdAt: new Date().toISOString() },
+  { id: 'n6', userId: 'u6', type: 'reminder', title: 'Appointment Reminder', message: 'Reminder: Your appointment with Dr. Rajesh Sharma is tomorrow at 10:00 AM. Please arrive 15 minutes early.', appointmentId: 'apt1', read: true, createdAt: new Date().toISOString() },
+];
+
+// ─── REVENUE ANALYTICS ───────────────────────────────────────
+export const MONTHLY_REVENUE = [
+  { month: 'Sep', revenue: 285000, appointments: 142 },
+  { month: 'Oct', revenue: 312000, appointments: 156 },
+  { month: 'Nov', revenue: 298000, appointments: 149 },
+  { month: 'Dec', revenue: 345000, appointments: 172 },
+  { month: 'Jan', revenue: 389000, appointments: 194 },
+  { month: 'Feb', revenue: 421000, appointments: 210 },
+];
+
+export const DEPT_REVENUE = [
+  { dept: 'Cardiology', revenue: 125000, patients: 48 },
+  { dept: 'Neurology', revenue: 98000, patients: 36 },
+  { dept: 'Orthopedics', revenue: 145000, patients: 52 },
+  { dept: 'Pediatrics', revenue: 67000, patients: 82 },
+  { dept: 'Dermatology', revenue: 45000, patients: 28 },
+  { dept: 'General Medicine', revenue: 89000, patients: 94 },
+];
+
+export const AGE_DISTRIBUTION = [
+  { name: '0-18', value: 18 },
+  { name: '19-35', value: 28 },
+  { name: '36-50', value: 32 },
+  { name: '51-65', value: 15 },
+  { name: '65+', value: 7 },
+];
+
+export const GENDER_DISTRIBUTION = [
+  { name: 'Male', value: 54 },
+  { name: 'Female', value: 43 },
+  { name: 'Other', value: 3 },
+];
