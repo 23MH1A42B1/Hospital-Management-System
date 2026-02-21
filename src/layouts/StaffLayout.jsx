@@ -1,6 +1,6 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { LayoutDashboard, LogOut, Hospital, Package } from 'lucide-react';
+import { LayoutDashboard, LogOut, Hospital, Package, ClipboardList, ShoppingCart, BarChart2, Pill } from 'lucide-react';
 import { logout } from '../slices/authSlice';
 import NotificationBell from '../components/NotificationBell';
 
@@ -15,7 +15,10 @@ const roleNavItems = {
     ],
     pharmacist: [
         { to: '/pharmacist/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-        { to: '/pharmacist/dashboard', label: 'Inventory', icon: Package },
+        { to: '/pharmacist/inventory', label: 'Medicine Inventory', icon: Pill },
+        { to: '/pharmacist/prescriptions', label: 'Prescriptions', icon: ClipboardList },
+        { to: '/pharmacist/sale', label: 'Quick Sale', icon: ShoppingCart },
+        { to: '/pharmacist/reports', label: 'Reports', icon: BarChart2 },
     ],
 };
 

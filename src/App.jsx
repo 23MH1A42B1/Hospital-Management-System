@@ -36,6 +36,10 @@ import PatientNotifications from './pages/patient/PatientNotifications';
 import ReceptionistDashboard from './pages/staff/ReceptionistDashboard';
 import NurseDashboard from './pages/staff/NurseDashboard';
 import PharmacistDashboard from './pages/staff/PharmacistDashboard';
+import MedicineInventory from './pages/staff/pharmacy/MedicineInventory';
+import PrescriptionQueue from './pages/staff/pharmacy/PrescriptionQueue';
+import QuickSale from './pages/staff/pharmacy/QuickSale';
+import PharmacyReports from './pages/staff/pharmacy/PharmacyReports';
 
 function ProtectedRoute({ children, allowedRoles }) {
   const { currentUser, isAuthenticated } = useSelector(s => s.auth);
@@ -108,8 +112,10 @@ export default function App() {
           <Route path="/pharmacist" element={<ProtectedRoute allowedRoles={['pharmacist']}><StaffLayout /></ProtectedRoute>}>
             <Route index element={<Navigate to="dashboard" replace />} />
             <Route path="dashboard" element={<PharmacistDashboard />} />
-            <Route path="inventory" element={<InventoryManagement />} />
-            <Route path="prescriptions" element={<PharmacistDashboard />} />
+            <Route path="inventory" element={<MedicineInventory />} />
+            <Route path="prescriptions" element={<PrescriptionQueue />} />
+            <Route path="sale" element={<QuickSale />} />
+            <Route path="reports" element={<PharmacyReports />} />
           </Route>
 
           {/* Fallback */}
