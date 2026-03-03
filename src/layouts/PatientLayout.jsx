@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { LayoutDashboard, CalendarPlus, Calendar, FileText, ReceiptText, Bell, LogOut, Hospital } from 'lucide-react';
 import { logout } from '../slices/authSlice';
 import NotificationBell from '../components/NotificationBell';
+import ProfileDropdown from '../components/ProfileDropdown';
 
 function getInitials(name) { return name?.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() || '??'; }
 
@@ -12,7 +13,6 @@ export default function PatientLayout() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleLogout = () => { dispatch(logout()); navigate('/login'); };
 
     const navItems = [
         { to: '/patient/dashboard', label: 'My Dashboard', icon: LayoutDashboard },
@@ -48,15 +48,11 @@ export default function PatientLayout() {
                     })}
                 </nav>
                 <div className="sidebar-footer">
-                    <div className="sidebar-user">
-                        <div className="avatar avatar-purple">{getInitials(currentUser?.name)}</div>
+                    <div className="sidebar-user px-3">
                         <div className="sidebar-user-info">
-                            <div className="sidebar-user-name">{currentUser?.name}</div>
-                            <div className="sidebar-user-role">Patient</div>
+                            <div className="sidebar-user-name" style={{ fontSize: '0.9rem', fontWeight: 600, color: '#f8fafc' }}>{currentUser?.name}</div>
+                            <div className="sidebar-user-role" style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Patient</div>
                         </div>
-                        <button onClick={handleLogout} style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer', padding: 4 }}>
-                            <LogOut size={16} />
-                        </button>
                     </div>
                 </div>
             </aside>
@@ -68,7 +64,7 @@ export default function PatientLayout() {
                     </div>
                     <div className="topbar-actions">
                         <NotificationBell />
-                        <div className="avatar avatar-purple">{getInitials(currentUser?.name)}</div>
+                        <ProfileDropdown />
                     </div>
                 </header>
                 <main className="page-content"><Outlet /></main>

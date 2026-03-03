@@ -1,8 +1,9 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { LayoutDashboard, CalendarCheck, Users, LogOut, Hospital } from 'lucide-react';
+import { LayoutDashboard, CalendarCheck, Users, LogOut, Hospital, FlaskConical, FilePen } from 'lucide-react';
 import { logout } from '../slices/authSlice';
 import NotificationBell from '../components/NotificationBell';
+import ProfileDropdown from '../components/ProfileDropdown';
 
 function getInitials(name) { return name?.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() || '??'; }
 
@@ -16,12 +17,12 @@ export default function DoctorLayout() {
         a.doctorId === currentUser?.doctorId && a.status === 'pending'
     ).length;
 
-    const handleLogout = () => { dispatch(logout()); navigate('/login'); };
-
     const navItems = [
         { to: '/doctor/dashboard', label: 'Dashboard', icon: LayoutDashboard },
         { to: '/doctor/appointments', label: 'Appointment Requests', icon: CalendarCheck, badge: pendingCount },
         { to: '/doctor/patients', label: 'Patient Records', icon: Users },
+        { to: '/doctor/prescriptions', label: 'Write Prescription', icon: FilePen },
+        { to: '/doctor/lab-orders', label: 'Lab Orders', icon: FlaskConical },
     ];
 
     return (
@@ -49,15 +50,11 @@ export default function DoctorLayout() {
                     })}
                 </nav>
                 <div className="sidebar-footer">
-                    <div className="sidebar-user">
-                        <div className="avatar avatar-teal">{getInitials(currentUser?.name)}</div>
+                    <div className="sidebar-user px-3">
                         <div className="sidebar-user-info">
-                            <div className="sidebar-user-name">{currentUser?.name}</div>
-                            <div className="sidebar-user-role">Doctor · {currentUser?.department}</div>
+                            <div className="sidebar-user-name" style={{ fontSize: '0.9rem', fontWeight: 600, color: '#f8fafc' }}>{currentUser?.name}</div>
+                            <div className="sidebar-user-role" style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Doctor · {currentUser?.department}</div>
                         </div>
-                        <button onClick={handleLogout} style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer', padding: 4 }}>
-                            <LogOut size={16} />
-                        </button>
                     </div>
                 </div>
             </aside>
@@ -70,7 +67,7 @@ export default function DoctorLayout() {
                     </div>
                     <div className="topbar-actions">
                         <NotificationBell />
-                        <div className="avatar avatar-teal">{getInitials(currentUser?.name)}</div>
+                        <ProfileDropdown />
                     </div>
                 </header>
                 <main className="page-content"><Outlet /></main>

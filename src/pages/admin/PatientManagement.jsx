@@ -7,7 +7,7 @@ import { BLOOD_GROUPS } from '../../data/mockData';
 function PatientModal({ patient, onClose }) {
     const dispatch = useDispatch();
     const isEdit = !!patient;
-    const [form, setForm] = useState(patient || {
+    const [form, setForm] = useState(() => patient || {
         name: '', age: '', gender: 'Male', bloodGroup: 'O+', phone: '', email: '',
         address: '', medicalHistory: { allergies: [], chronicConditions: [], previousSurgeries: [], currentMedications: [] },
         insurance: null, registeredOn: new Date().toISOString().split('T')[0], visits: 0,

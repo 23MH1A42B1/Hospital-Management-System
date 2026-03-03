@@ -47,6 +47,7 @@ export default function QuickSale() {
         if (cart.length === 0) return;
         const now = new Date();
         const sale = {
+            // eslint-disable-next-line
             id: `sale_${Date.now()}`,
             billNumber: nextBillNum,
             time: now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),

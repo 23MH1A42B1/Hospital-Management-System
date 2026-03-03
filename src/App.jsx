@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ToastProvider } from './components/Toast';
 
@@ -7,6 +7,9 @@ import AdminLayout from './layouts/AdminLayout';
 import DoctorLayout from './layouts/DoctorLayout';
 import PatientLayout from './layouts/PatientLayout';
 import StaffLayout from './layouts/StaffLayout';
+
+// Profile Settings
+import ProfileSettings from './pages/profile/ProfileSettings';
 
 // Auth
 import Login from './pages/Login';
@@ -23,6 +26,8 @@ import Reports from './pages/admin/Reports';
 import DoctorDashboard from './pages/doctor/DoctorDashboard';
 import AppointmentRequests from './pages/doctor/AppointmentRequests';
 import PatientRecords from './pages/doctor/PatientRecords';
+import WritePrescription from './pages/doctor/WritePrescription';
+import LabOrders from './pages/doctor/LabOrders';
 
 // Patient pages
 import PatientDashboard from './pages/patient/PatientDashboard';
@@ -32,10 +37,23 @@ import MedicalRecords from './pages/patient/MedicalRecords';
 import BillingHistory from './pages/patient/BillingHistory';
 import PatientNotifications from './pages/patient/PatientNotifications';
 
-// Staff pages
+// Staff — Shared dashboards
 import ReceptionistDashboard from './pages/staff/ReceptionistDashboard';
 import NurseDashboard from './pages/staff/NurseDashboard';
 import PharmacistDashboard from './pages/staff/PharmacistDashboard';
+
+// Receptionist pages
+import PatientRegistration from './pages/staff/PatientRegistration';
+import PatientCheckIn from './pages/staff/PatientCheckIn';
+import BillingCounter from './pages/staff/BillingCounter';
+
+// Nurse pages
+import NursePatients from './pages/staff/nurse/NursePatients';
+import VitalsRecording from './pages/staff/nurse/VitalsRecording';
+import MedicationAdmin from './pages/staff/nurse/MedicationAdmin';
+import NurseOrders from './pages/staff/nurse/NurseOrders';
+
+// Pharmacist pages
 import MedicineInventory from './pages/staff/pharmacy/MedicineInventory';
 import PrescriptionQueue from './pages/staff/pharmacy/PrescriptionQueue';
 import QuickSale from './pages/staff/pharmacy/QuickSale';
@@ -51,7 +69,14 @@ function ProtectedRoute({ children, allowedRoles }) {
 function RoleRedirect() {
   const { currentUser, isAuthenticated } = useSelector(s => s.auth);
   if (!isAuthenticated) return <Navigate to="/login" replace />;
-  const map = { admin: '/admin/dashboard', doctor: '/doctor/dashboard', patient: '/patient/dashboard', receptionist: '/receptionist/dashboard', nurse: '/nurse/dashboard', pharmacist: '/pharmacist/dashboard' };
+  const map = {
+    admin: '/admin/dashboard',
+    doctor: '/doctor/dashboard',
+    patient: '/patient/dashboard',
+    receptionist: '/receptionist/dashboard',
+    nurse: '/nurse/dashboard',
+    pharmacist: '/pharmacist/dashboard',
+  };
   return <Navigate to={map[currentUser?.role] || '/login'} replace />;
 }
 
@@ -72,6 +97,7 @@ export default function App() {
             <Route path="inventory" element={<InventoryManagement />} />
             <Route path="billing" element={<BillingManagement />} />
             <Route path="reports" element={<Reports />} />
+            <Route path="profile" element={<ProfileSettings />} />
           </Route>
 
           {/* Doctor */}
@@ -80,6 +106,9 @@ export default function App() {
             <Route path="dashboard" element={<DoctorDashboard />} />
             <Route path="appointments" element={<AppointmentRequests />} />
             <Route path="patients" element={<PatientRecords />} />
+            <Route path="prescriptions" element={<WritePrescription />} />
+            <Route path="lab-orders" element={<LabOrders />} />
+            <Route path="profile" element={<ProfileSettings />} />
           </Route>
 
           {/* Patient */}
@@ -91,21 +120,28 @@ export default function App() {
             <Route path="medical-records" element={<MedicalRecords />} />
             <Route path="billing" element={<BillingHistory />} />
             <Route path="notifications" element={<PatientNotifications />} />
+            <Route path="profile" element={<ProfileSettings />} />
           </Route>
 
           {/* Receptionist */}
           <Route path="/receptionist" element={<ProtectedRoute allowedRoles={['receptionist']}><StaffLayout /></ProtectedRoute>}>
             <Route index element={<Navigate to="dashboard" replace />} />
             <Route path="dashboard" element={<ReceptionistDashboard />} />
-            <Route path="appointments" element={<ReceptionistDashboard />} />
-            <Route path="patients" element={<PatientManagement />} />
+            <Route path="register" element={<PatientRegistration />} />
+            <Route path="checkin" element={<PatientCheckIn />} />
+            <Route path="billing" element={<BillingCounter />} />
+            <Route path="profile" element={<ProfileSettings />} />
           </Route>
 
           {/* Nurse */}
           <Route path="/nurse" element={<ProtectedRoute allowedRoles={['nurse']}><StaffLayout /></ProtectedRoute>}>
             <Route index element={<Navigate to="dashboard" replace />} />
             <Route path="dashboard" element={<NurseDashboard />} />
-            <Route path="patients" element={<PatientManagement />} />
+            <Route path="patients" element={<NursePatients />} />
+            <Route path="patients/:patientId/vitals" element={<VitalsRecording />} />
+            <Route path="medications" element={<MedicationAdmin />} />
+            <Route path="orders" element={<NurseOrders />} />
+            <Route path="profile" element={<ProfileSettings />} />
           </Route>
 
           {/* Pharmacist */}
@@ -116,6 +152,7 @@ export default function App() {
             <Route path="prescriptions" element={<PrescriptionQueue />} />
             <Route path="sale" element={<QuickSale />} />
             <Route path="reports" element={<PharmacyReports />} />
+            <Route path="profile" element={<ProfileSettings />} />
           </Route>
 
           {/* Fallback */}

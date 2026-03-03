@@ -8,6 +8,7 @@ import billingReducer from '../slices/billingSlice';
 import notificationsReducer from '../slices/notificationsSlice';
 import staffReducer from '../slices/staffSlice';
 import pharmacyReducer from '../slices/pharmacySlice';
+import nurseReducer from '../slices/nurseSlice';
 
 export const store = configureStore({
     reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
         notifications: notificationsReducer,
         staff: staffReducer,
         pharmacy: pharmacyReducer,
+        nurse: nurseReducer,
     },
 });
 

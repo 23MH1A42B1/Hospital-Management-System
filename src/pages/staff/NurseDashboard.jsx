@@ -49,8 +49,8 @@ export default function NurseDashboard() {
                                 <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{p.bloodGroup} · {p.age}y</div>
                             </div>
                             <div style={{ display: 'flex', gap: 12, fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
-                                <span>💓 {Math.floor(65 + Math.random() * 30)}/min</span>
-                                <span>🩸 {Math.floor(110 + Math.random() * 30)}/{Math.floor(70 + Math.random() * 20)}</span>
+                                <span>💓 {Math.floor(65 + ((p.id.length * 7) % 30))}/min</span>
+                                <span>🩸 {Math.floor(110 + ((p.id.length * 11) % 30))}/{Math.floor(70 + ((p.id.length * 13) % 20))}</span>
                             </div>
                         </div>
                     ))}

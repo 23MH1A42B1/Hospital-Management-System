@@ -1,0 +1,168 @@
+﻿
+C:\pdf\Hospital Tracker\src\components\Toast.jsx
+  6:17  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\pdf\Hospital Tracker\src\pages\Login.jsx
+  128:70  error  'Icon' is defined but never used  no-unused-vars
+
+C:\pdf\Hospital Tracker\src\pages\admin\Dashboard.jsx
+  11:26  error  'Icon' is defined but never used  no-unused-vars
+
+C:\pdf\Hospital Tracker\src\pages\admin\InventoryManagement.jsx
+  9:11  error  'pct' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\pdf\Hospital Tracker\src\pages\admin\PatientManagement.jsx
+  15:39  error  Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  13 |         insurance: null, registeredOn: new Date().toISOString().split('T')[0], visits: 0,
+  14 |         emergencyContact: { name: '', relation: '', phone: '' },
+> 15 |         patientId: `PAT-2024-${String(Date.now()).slice(-4).padStart(3, '0')}`,
+     |                                       ^^^^^^^^^^ Cannot call impure function
+  16 |         id: `p_${Date.now()}`,
+  17 |     });
+  18 |  react-hooks/purity
+  16:18  error  Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  14 |         emergencyContact: { name: '', relation: '', phone: '' },
+  15 |         patientId: `PAT-2024-${String(Date.now()).slice(-4).padStart(3, '0')}`,
+> 16 |         id: `p_${Date.now()}`,
+     |                  ^^^^^^^^^^ Cannot call impure function
+  17 |     });
+  18 |
+  19 |     const set = (field, val) => setForm(f => ({ ...f, [field]: val }));                                         react-hooks/purity
+
+C:\pdf\Hospital Tracker\src\pages\doctor\AppointmentRequests.jsx
+  125:12  error  'selected' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u     no-unused-vars
+  125:22  error  'setSelected' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\pdf\Hospital Tracker\src\pages\doctor\DoctorDashboard.jsx
+  14:11  error  'completedApts' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+  16:11  error  'statusColor' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u    no-unused-vars
+
+C:\pdf\Hospital Tracker\src\pages\doctor\LabOrders.jsx
+  50:121  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  48 |     const [clinicalInfo, setClinicalInfo] = useState('');
+  49 |     const [saved, setSaved] = useState(null);
+> 50 |     const [orderNumber] = useState(`LAB-${new Date().toISOString().split('T')[0].replace(/-/g, '')}-${String(Math.floor(Math.random() * 9000 + 1000))}`);
+     |                                                                                                                         ^^^^^^^^^^^^^ Cannot call impure function
+  51 |
+  52 |     const filteredPatients = patients.filter(p =>
+  53 |         patientSearch && (p.name.toLowerCase().includes(patientSearch.toLowerCase()) || p.patientId.toLowerCase().includes(patientSearch.toLowerCase()))  react-hooks/purity
+
+C:\pdf\Hospital Tracker\src\pages\doctor\WritePrescription.jsx
+  14:11  error  'appointments' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            no-unused-vars
+  25:62  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  23 |     const [diagnosis, setDiagnosis] = useState('');
+  24 |     const [saved, setSaved] = useState(false);
+> 25 |     const [rxNumber] = useState(`RX-2026-${String(Math.floor(Math.random() * 9000 + 1000))}`);
+     |                                                              ^^^^^^^^^^^^^ Cannot call impure function
+  26 |
+  27 |     const filteredPatients = patients.filter(p =>
+  28 |         patientSearch && (p.name.toLowerCase().includes(patientSearch.toLowerCase()) || p.patientId.toLowerCase().includes(patientSearch.toLowerCase()))  react-hooks/purity
+
+C:\pdf\Hospital Tracker\src\pages\patient\MyAppointments.jsx
+   3:29  error  'addReview' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+  14:18  error  'reviewAppointment' is not defined                                                no-undef
+
+C:\pdf\Hospital Tracker\src\pages\patient\PatientDashboard.jsx
+   4:10  error  'format' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                no-unused-vars
+  18:11  error  'statusColor' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\pdf\Hospital Tracker\src\pages\patient\PatientNotifications.jsx
+  4:33  error  'dismiss' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\pdf\Hospital Tracker\src\pages\patient\RequestAppointment.jsx
+  31:11  error  'patient' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\pdf\Hospital Tracker\src\pages\staff\BillingCounter.jsx
+   2:23  error  'useDispatch' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    no-unused-vars
+  47:65  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  45 |     const [amountReceived, setAmountReceived] = useState('');
+  46 |     const [paid, setPaid] = useState(false);
+> 47 |     const [billNumber] = useState(`INV-2024-${String(Math.floor(Math.random() * 9000 + 1000))}`);
+     |                                                                 ^^^^^^^^^^^^^ Cannot call impure function
+  48 |
+  49 |     const filteredPatients = patients.filter(p =>
+  50 |         patientSearch && (p.name.toLowerCase().includes(patientSearch.toLowerCase()) || p.patientId.toLowerCase().includes(patientSearch.toLowerCase()))  react-hooks/purity
+
+C:\pdf\Hospital Tracker\src\pages\staff\NurseDashboard.jsx
+  52:59  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  50 |                             </div>
+  51 |                             <div style={{ display: 'flex', gap: 12, fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
+> 52 |                                 <span>≡ƒÆô {Math.floor(65 + Math.random() * 30)}/min</span>
+     |                                                           ^^^^^^^^^^^^^ Cannot call impure function
+  53 |                                 <span>≡ƒ⌐╕ {Math.floor(110 + Math.random() * 30)}/{Math.floor(70 + Math.random() * 20)}</span>
+  54 |                             </div>
+  55 |                         </div>                              react-hooks/purity
+  53:60  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  51 |                             <div style={{ display: 'flex', gap: 12, fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
+  52 |                                 <span>≡ƒÆô {Math.floor(65 + Math.random() * 30)}/min</span>
+> 53 |                                 <span>≡ƒ⌐╕ {Math.floor(110 + Math.random() * 30)}/{Math.floor(70 + Math.random() * 20)}</span>
+     |                                                            ^^^^^^^^^^^^^ Cannot call impure function
+  54 |                             </div>
+  55 |                         </div>
+  56 |                     ))}                                        react-hooks/purity
+  53:98  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  51 |                             <div style={{ display: 'flex', gap: 12, fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
+  52 |                                 <span>≡ƒÆô {Math.floor(65 + Math.random() * 30)}/min</span>
+> 53 |                                 <span>≡ƒ⌐╕ {Math.floor(110 + Math.random() * 30)}/{Math.floor(70 + Math.random() * 20)}</span>
+     |                                                                                                  ^^^^^^^^^^^^^ Cannot call impure function
+  54 |                             </div>
+  55 |                         </div>
+  56 |                     ))}  react-hooks/purity
+
+C:\pdf\Hospital Tracker\src\pages\staff\PatientCheckIn.jsx
+   5:10  error  'approveAppointment' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+  15:11  error  'patients' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u   no-unused-vars
+  16:11  error  'dispatch' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u   no-unused-vars
+  86:39  error  'status' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u     no-unused-vars
+
+C:\pdf\Hospital Tracker\src\pages\staff\nurse\NursePatients.jsx
+  2:23  error  'useDispatch' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\pdf\Hospital Tracker\src\pages\staff\nurse\VitalsRecording.jsx
+   67:11  error  'prev' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u       no-unused-vars
+   69:11  error  'trend' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u      no-unused-vars
+   73:15  error  'improving' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+  115:47  error  'Icon' is defined but never used                                                           no-unused-vars
+
+C:\pdf\Hospital Tracker\src\pages\staff\pharmacy\PrescriptionQueue.jsx
+  16:11  error  'navigate' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\pdf\Hospital Tracker\src\pages\staff\pharmacy\QuickSale.jsx
+  50:25  error  Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  48 |         const now = new Date();
+  49 |         const sale = {
+> 50 |             id: `sale_${Date.now()}`,
+     |                         ^^^^^^^^^^ Cannot call impure function
+  51 |             billNumber: nextBillNum,
+  52 |             time: now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+  53 |             patient: patientName.trim() || 'Walk-in Customer',  react-hooks/purity
+
+Γ£û 35 problems (35 errors, 0 warnings)
+
