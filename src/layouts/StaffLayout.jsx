@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { LayoutDashboard, LogOut, Hospital, Package, ClipboardList, ShoppingCart, BarChart2, Pill, UserPlus, UserCheck, Receipt, Activity, Heart, FlaskConical } from 'lucide-react';
+import { LayoutDashboard, LogOut, Hospital, Package, ClipboardList, ShoppingCart, BarChart2, Pill, UserPlus, UserCheck, Receipt, Activity, Heart, FlaskConical, Menu } from 'lucide-react';
 import { logout } from '../slices/authSlice';
 import NotificationBell from '../components/NotificationBell';
 import ProfileDropdown from '../components/ProfileDropdown';
@@ -33,6 +34,7 @@ const roleColors = { receptionist: 'avatar-orange', nurse: 'avatar-green', pharm
 const roleTitles = { receptionist: 'Receptionist Portal', nurse: 'Nurse Portal', pharmacist: 'Pharmacist Portal' };
 
 export default function StaffLayout() {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { currentUser } = useSelector(s => s.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -44,7 +46,8 @@ export default function StaffLayout() {
 
     return (
         <div className="app-shell">
-            <aside className="sidebar">
+            <div className={`mobile-sidebar-overlay ${isMobileMenuOpen ? 'active' : ''}`} onClick={() => setIsMobileMenuOpen(false)}></div>
+            <aside className={`sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
 
                 <div className="sidebar-logo">
                     <div className="sidebar-logo-icon"><Hospital size={22} color="#fff" /></div>
@@ -76,6 +79,9 @@ export default function StaffLayout() {
             </aside>
             <div className="main-content">
                 <header className="topbar">
+                    <button className="mobile-menu-toggle" onClick={() => setIsMobileMenuOpen(true)}>
+                        <Menu size={24} />
+                    </button>
                     <div className="topbar-title">
                         <h1>{roleTitles[role] || 'Staff Portal'}</h1>
                         <p>Welcome, {currentUser?.name}</p>

@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
     LayoutDashboard, Users, Package, CreditCard, BarChart3,
-    UserCog, LogOut, Hospital
+    UserCog, LogOut, Hospital, Menu
 } from 'lucide-react';
 import { logout } from '../slices/authSlice';
 import NotificationBell from '../components/NotificationBell';
@@ -32,6 +33,7 @@ const navItems = [
 function getInitials(name) { return name?.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() || '??'; }
 
 export default function AdminLayout() {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { currentUser } = useSelector(s => s.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -40,7 +42,8 @@ export default function AdminLayout() {
 
     return (
         <div className="app-shell">
-            <aside className="sidebar">
+            <div className={`mobile-sidebar-overlay ${isMobileMenuOpen ? 'active' : ''}`} onClick={() => setIsMobileMenuOpen(false)}></div>
+            <aside className={`sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
 
                 <div className="sidebar-logo">
                     <div className="sidebar-logo-icon"><Hospital size={22} color="#fff" /></div>
@@ -79,6 +82,9 @@ export default function AdminLayout() {
 
             <div className="main-content">
                 <header className="topbar">
+                    <button className="mobile-menu-toggle" onClick={() => setIsMobileMenuOpen(true)}>
+                        <Menu size={24} />
+                    </button>
                     <div className="topbar-title">
                         <h1>MediCare Hospital Management</h1>
                         <p>Admin Portal · {new Date().toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>

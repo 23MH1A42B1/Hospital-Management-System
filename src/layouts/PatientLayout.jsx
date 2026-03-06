@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { LayoutDashboard, CalendarPlus, Calendar, FileText, ReceiptText, Bell, LogOut, Hospital } from 'lucide-react';
+import { LayoutDashboard, CalendarPlus, Calendar, FileText, ReceiptText, Bell, LogOut, Hospital, Menu } from 'lucide-react';
 import { logout } from '../slices/authSlice';
 import NotificationBell from '../components/NotificationBell';
 import ProfileDropdown from '../components/ProfileDropdown';
@@ -8,6 +9,7 @@ import ProfileDropdown from '../components/ProfileDropdown';
 function getInitials(name) { return name?.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() || '??'; }
 
 export default function PatientLayout() {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { currentUser } = useSelector(s => s.auth);
     const notifications = useSelector(s => s.notifications.list.filter(n => n.userId === currentUser?.id && !n.read));
     const dispatch = useDispatch();
@@ -25,7 +27,8 @@ export default function PatientLayout() {
 
     return (
         <div className="app-shell">
-            <aside className="sidebar">
+            <div className={`mobile-sidebar-overlay ${isMobileMenuOpen ? 'active' : ''}`} onClick={() => setIsMobileMenuOpen(false)}></div>
+            <aside className={`sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
 
                 <div className="sidebar-logo">
                     <div className="sidebar-logo-icon"><Hospital size={22} color="#fff" /></div>
@@ -58,6 +61,9 @@ export default function PatientLayout() {
             </aside>
             <div className="main-content">
                 <header className="topbar">
+                    <button className="mobile-menu-toggle" onClick={() => setIsMobileMenuOpen(true)}>
+                        <Menu size={24} />
+                    </button>
                     <div className="topbar-title">
                         <h1>Patient Portal</h1>
                         <p>Welcome back, {currentUser?.name?.split(' ')[0]}</p>

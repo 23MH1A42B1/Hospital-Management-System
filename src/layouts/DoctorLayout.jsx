@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { LayoutDashboard, CalendarCheck, Users, LogOut, Hospital, FlaskConical, FilePen } from 'lucide-react';
+import { LayoutDashboard, CalendarCheck, Users, LogOut, Hospital, FlaskConical, FilePen, Menu } from 'lucide-react';
 import { logout } from '../slices/authSlice';
 import NotificationBell from '../components/NotificationBell';
 import ProfileDropdown from '../components/ProfileDropdown';
@@ -8,6 +9,7 @@ import ProfileDropdown from '../components/ProfileDropdown';
 function getInitials(name) { return name?.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() || '??'; }
 
 export default function DoctorLayout() {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { currentUser } = useSelector(s => s.auth);
     const appointments = useSelector(s => s.appointments.list);
     const dispatch = useDispatch();
@@ -27,7 +29,8 @@ export default function DoctorLayout() {
 
     return (
         <div className="app-shell">
-            <aside className="sidebar">
+            <div className={`mobile-sidebar-overlay ${isMobileMenuOpen ? 'active' : ''}`} onClick={() => setIsMobileMenuOpen(false)}></div>
+            <aside className={`sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
 
                 <div className="sidebar-logo">
                     <div className="sidebar-logo-icon"><Hospital size={22} color="#fff" /></div>
@@ -61,6 +64,9 @@ export default function DoctorLayout() {
 
             <div className="main-content">
                 <header className="topbar">
+                    <button className="mobile-menu-toggle" onClick={() => setIsMobileMenuOpen(true)}>
+                        <Menu size={24} />
+                    </button>
                     <div className="topbar-title">
                         <h1>Doctor Dashboard</h1>
                         <p>{currentUser?.name} · {currentUser?.department}</p>
